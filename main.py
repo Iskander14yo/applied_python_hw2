@@ -240,7 +240,7 @@ async def cmd_log_workout(message: types.Message):
     user_info["calories_burned"] += ccal_burned
 
     # Базовая формула: 200мл на 30 минут
-    add_water = (mins // 30) * 200
+    add_water = int(mins / 30 * 200)
     user_info["water_drank"] += add_water
 
     await message.reply(
@@ -273,7 +273,7 @@ async def cmd_check_progress(message: types.Message):
             f"<b>Калорий сожжено</b>: {user_info['calories_burned']:.1f}\n"
             f"Баланс по калориям = {net_cal:.1f}\n"
             f"Дневной таргет по калориям = {daily_target_cal:.1f}\n"
-            f"Калорий осталось до таргета: {(cals_left - bmr):.1f} (с учетом BMR={bmr})")
+            f"Калорий осталось до таргета: {(cals_left):.1f}")
     await message.reply(text)
 
 # --- Main ---
